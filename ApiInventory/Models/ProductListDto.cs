@@ -2,7 +2,9 @@
 
 public class ProductListDto
 {
-    public ProductModel[] products { get; set; }
+    public List<ProductModel> products { get; set; }
 
-    public int Count => products.Count();
+    public int Count { get; set; }
+
+    public decimal CommonCost { get; set; }
 }

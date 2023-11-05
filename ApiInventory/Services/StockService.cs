@@ -9,8 +9,6 @@ public class StockService : IStockService
 
     private readonly IDataProvider _dataProvider;
 
-    public int ProductTypesCount => _products.Count;
-
     public decimal CommonCost { get; private set; }
 
     public StockService()
@@ -124,7 +122,12 @@ public class StockService : IStockService
 
     public ProductListDto GetProductList()
     {
-        return new ProductListDto { products = _products.ToArray() };
+        return new ProductListDto 
+            { 
+                products = new List<ProductModel>(_products), 
+                Count = _products.Count(),
+                CommonCost = CommonCost
+            };
     }
 
     public ResultModel AddProductCnt(ChangeProductCntDto productDto)
@@ -142,6 +145,8 @@ public class StockService : IStockService
         }
 
         product.Count += productDto.Count;
+
+        ComputeCommonCost();
 
         return new ResultModel { Success = true, Message = "Ok" };
     }
@@ -161,6 +166,8 @@ public class StockService : IStockService
         }
 
         product.Count -= productDto.Count;
+
+        ComputeCommonCost();
 
         return new ResultModel { Success = true, Message = "Ok" };
     }
