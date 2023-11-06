@@ -84,10 +84,4 @@ public class StockController : ControllerBase
 
         return Ok(result);
     }
-
-    [HttpPost]
-    public void Save()
-    {
-        _stockService.Save();
-    }
 }

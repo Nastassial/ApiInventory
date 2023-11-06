@@ -70,6 +70,8 @@ public class StockService : IStockService
 
         ComputeCommonCost();
 
+        Save();
+
         return new ResultModel { Success = true, Message = "Ok" };
     }
 
@@ -84,6 +86,8 @@ public class StockService : IStockService
 
         ComputeCommonCost();
 
+        Save();
+
         return new ResultModel { Success = true, Message = "Ok" };
     }
 
@@ -97,6 +101,8 @@ public class StockService : IStockService
         _products.Add(product);
 
         ComputeCommonCost();
+
+        Save();
 
         return new ResultModel { Success = true, Message = "Ok" };
     }
@@ -148,6 +154,8 @@ public class StockService : IStockService
 
         ComputeCommonCost();
 
+        Save();
+
         return new ResultModel { Success = true, Message = "Ok" };
     }
 
@@ -168,6 +176,8 @@ public class StockService : IStockService
         product.Count -= productDto.Count;
 
         ComputeCommonCost();
+
+        Save();
 
         return new ResultModel { Success = true, Message = "Ok" };
     }
