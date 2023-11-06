@@ -15,21 +15,18 @@ public class StockController : ControllerBase
         _stockService = stockService;
     }
 
-    // GET: api/StockController/GetProductList
     [HttpGet]
     public ProductListDto GetProductList()
     {
         return _stockService.GetProductList();
     }
 
-    // POST api/StockController/GetProduct
     [HttpPost]
     public ProductModel? GetProduct([FromBody] ProductActionDto product)
     {
         return _stockService.GetProduct(product);
     }
 
-    // POST api/StockController/AddProduct
     [HttpPost]
     public IActionResult AddProduct([FromBody] ProductModel product)
     {
@@ -43,14 +40,12 @@ public class StockController : ControllerBase
         return Ok(result);
     }
 
-    // DELETE api/StockController/ClearStock
     [HttpDelete]
     public void ClearStock()
     {
         _stockService.Clear();
     }
 
-    // POST api/StockController/DeleteProduct
     [HttpPost]
     public IActionResult DeleteProduct([FromBody] ProductActionDto product)
     {
@@ -64,7 +59,6 @@ public class StockController : ControllerBase
         return Ok(result);
     }
 
-    // POST api/StockController/AddProductCnt
     [HttpPost]
     public IActionResult AddProductCnt([FromBody] ChangeProductCntDto product)
     {
@@ -78,7 +72,6 @@ public class StockController : ControllerBase
         return Ok(result);
     }
 
-    // POST api/StockController/RemoveProductCnt
     [HttpPost]
     public IActionResult RemoveProductCnt([FromBody] ChangeProductCntDto product)
     {
@@ -92,7 +85,6 @@ public class StockController : ControllerBase
         return Ok(result);
     }
 
-    // POST api/StockController/Save
     [HttpPost]
     public void Save()
     {
