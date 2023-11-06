@@ -11,13 +11,6 @@ public class StockService : IStockService
 
     public decimal CommonCost { get; private set; }
 
-    public StockService()
-    {
-        _products = new List<ProductModel>(0);
-
-        CommonCost = 0;
-    }
-
     public StockService(IDataProvider dataProvider)
     {
         _dataProvider = dataProvider;
@@ -136,7 +129,7 @@ public class StockService : IStockService
             };
     }
 
-    public ResultModel AddProductCnt(ChangeProductCntDto productDto)
+    public ResultModel AddProductCount(ChangeProductCntDto productDto)
     {
         if (productDto.Count < 0)
         {
@@ -159,7 +152,7 @@ public class StockService : IStockService
         return new ResultModel { Success = true, Message = "Ok" };
     }
 
-    public ResultModel RemoveProductCnt(ChangeProductCntDto productDto)
+    public ResultModel RemoveProductCount(ChangeProductCntDto productDto)
     {
         ProductModel? product = GetProduct(new ProductActionDto { Id = productDto.Id });
 

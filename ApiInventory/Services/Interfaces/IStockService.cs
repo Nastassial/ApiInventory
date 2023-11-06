@@ -4,21 +4,21 @@ namespace ApiInventory.Services.Interfaces;
 
 public interface IStockService
 {
-    public ResultModel Remove(ProductActionDto productActionDto);
+    ResultModel Remove(ProductActionDto productActionDto);
 
-    public ResultModel Remove(ProductModel product);
+    ResultModel Remove(ProductModel product);
 
-    public ResultModel Add(ProductModel product);
+    ResultModel Add(ProductModel product);
 
-    public void Clear();
+    void Clear();
 
-    public ProductModel? GetProduct(ProductActionDto getProductDto);
+    ProductModel? GetProduct(ProductActionDto getProductDto);
 
-    public ProductListDto GetProductList();
+    ProductListDto GetProductList();
 
-    public ResultModel AddProductCnt(ChangeProductCntDto productDto);
+    ResultModel AddProductCount(ChangeProductCntDto productDto);
 
-    public ResultModel RemoveProductCnt(ChangeProductCntDto productDto);
+    ResultModel RemoveProductCount(ChangeProductCntDto productDto);
 
-    public void Save();
+    void Save();
 }

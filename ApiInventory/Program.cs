@@ -7,7 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddSingleton<IStockService>(new StockService(new FileDataProvider("Data/inventoryData.json")));
+builder.Services.AddSingleton<IStockService, StockService>();
+builder.Services.AddSingleton<IDataProvider>(new FileDataProvider("Data/inventoryData.json"));
 
 var app = builder.Build();
 
