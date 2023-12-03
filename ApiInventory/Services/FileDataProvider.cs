@@ -45,4 +45,10 @@ public class FileDataProvider : IDataProvider
 
         return new List<ProductModel>();
     }
+
+    public void Remove(ProductModel product) {}
+
+    public void Add(ProductModel product) {}
+
+    public void Update(ProductModel product) {}
 }

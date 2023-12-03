@@ -1,3 +1,4 @@
+using ApiInventory.Database;
 using ApiInventory.Services;
 using ApiInventory.Services.Interfaces;
 
@@ -7,8 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddTransient<InventoryDbContext>();
 builder.Services.AddSingleton<IStockService, StockService>();
-builder.Services.AddSingleton<IDataProvider>(new FileDataProvider("Data/inventoryData.json"));
+builder.Services.AddSingleton<IDataProvider, DbDataProvider>();
 
 var app = builder.Build();
 

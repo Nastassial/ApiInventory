@@ -28,7 +28,7 @@ public class StockController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult AddProduct([FromBody] ProductModel product)
+    public IActionResult AddProduct([FromBody] AddProductDto product)
     {
         ResultModel result = _stockService.Add(product);
 

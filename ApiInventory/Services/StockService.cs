@@ -35,19 +35,14 @@ public class StockService : IStockService
         }
     }
 
-    private bool Contains(int id)
+    private bool Contains(int code)
     {
         foreach (var product in _products)
         {
-            if (product.Id == id) return true;
+            if (product.Code == code) return true;
         }
 
         return false;
-    }
-
-    private bool Contains(ProductModel product)
-    {
-        return _products.Contains(product);
     }
 
     public ResultModel Remove(ProductActionDto productActionDto)
@@ -59,43 +54,35 @@ public class StockService : IStockService
             return new ResultModel { Success = false, Message = "There is no such product" };
         }
 
-        Remove(product);
-
-        ComputeCommonCost();
-
-        Save();
-
-        return new ResultModel { Success = true, Message = "Ok" };
-    }
-
-    public ResultModel Remove(ProductModel product)
-    {
-        if (!Contains(product) && !Contains(product.Id))
-        {
-            return new ResultModel { Success = false, Message = "There is no such product" };
-        }
-
         _products.Remove(product);
 
         ComputeCommonCost();
 
-        Save();
+        _dataProvider.Remove(product);
 
         return new ResultModel { Success = true, Message = "Ok" };
     }
 
-    public ResultModel Add(ProductModel product)
+    public ResultModel Add(AddProductDto product)
     {
-        if (Contains(product) || Contains(product.Id))
+        if (Contains(product.Code))
         {
             return new ResultModel { Success = false, Message = "This product already exists" };
         }
 
-        _products.Add(product);
+        var productModel = new ProductModel
+        {
+            Code = product.Code,
+            Count = product.Count,
+            Name = product.Name,
+            Price = product.Price
+        };
+
+        _products.Add(productModel);
 
         ComputeCommonCost();
 
-        Save();
+        _dataProvider.Add(productModel);
 
         return new ResultModel { Success = true, Message = "Ok" };
     }
@@ -147,7 +134,7 @@ public class StockService : IStockService
 
         ComputeCommonCost();
 
-        Save();
+        _dataProvider.Update(product);
 
         return new ResultModel { Success = true, Message = "Ok" };
     }
@@ -170,13 +157,8 @@ public class StockService : IStockService
 
         ComputeCommonCost();
 
-        Save();
+        _dataProvider.Update(product);
 
         return new ResultModel { Success = true, Message = "Ok" };
-    }
-
-    public void Save()
-    {
-        _dataProvider.Save(_products);
     }
 }

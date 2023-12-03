@@ -9,4 +9,10 @@ public interface IDataProvider
     List<ProductModel> Load();
 
     void Clear();
+
+    void Remove(ProductModel product);
+
+    void Add(ProductModel product);
+
+    void Update(ProductModel product);
 }

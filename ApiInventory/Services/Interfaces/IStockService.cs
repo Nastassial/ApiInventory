@@ -6,9 +6,7 @@ public interface IStockService
 {
     ResultModel Remove(ProductActionDto productActionDto);
 
-    ResultModel Remove(ProductModel product);
-
-    ResultModel Add(ProductModel product);
+    ResultModel Add(AddProductDto product);
 
     void Clear();
 
@@ -19,6 +17,4 @@ public interface IStockService
     ResultModel AddProductCount(ChangeProductCntDto productDto);
 
     ResultModel RemoveProductCount(ChangeProductCntDto productDto);
-
-    void Save();
 }
