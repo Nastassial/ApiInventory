@@ -60,7 +60,7 @@ public class StockController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult AddProductCnt([FromBody] ChangeProductCntDto product)
+    public IActionResult AddProductCount([FromBody] ChangeProductCntDto product)
     {
         ResultModel result = _stockService.AddProductCount(product);
 
@@ -73,7 +73,7 @@ public class StockController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult RemoveProductCnt([FromBody] ChangeProductCntDto product)
+    public IActionResult RemoveProductCount([FromBody] ChangeProductCntDto product)
     {
         ResultModel result = _stockService.RemoveProductCount(product);
 
